@@ -18,5 +18,6 @@ namespace POSTNET.Model.Entities
         public string Test8 { get; set; }
         public string Test9 { get; set; }
         public string Test10 { get; set; }
+        public string Test11 { get; set; }
     }
 }
