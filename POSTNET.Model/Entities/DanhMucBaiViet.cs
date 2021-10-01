@@ -4,20 +4,20 @@ using System.Text;
 
 namespace POSTNET.Model.Entities
 {
-    public class DanhMucBaiViet
+    public class DanhMucBaiViet: BaseEntity
     {
         public string TenDanhMuc { get; set; }
-        public string NoiDung { get; set; }
-        public string Test { get; set; }
-        public string Test2 { get; set; }
-        public string Test3 { get; set; }
-        public string Test4 { get; set; }
-        public string Test5 { get; set; }
-        public string Test6 { get; set; }
-        public string Test7 { get; set; }
-        public string Test8 { get; set; }
-        public string Test9 { get; set; }
-        public string Test10 { get; set; }
-        public string Test11 { get; set; }
+        public string Alias { get; set; }
+        public bool HienThiMenu { get; set; }
+        public int ThuTuHienThi { get; set; }
+        public bool HoatDong { get; set; }
+
+        private ICollection<BaiViet> _baiViets;
+        public virtual ICollection<BaiViet> BaiViets
+        {
+            get => _baiViets ??
+                   (_baiViets = new List<BaiViet>());
+            protected set => _baiViets = value;
+        }
     }
 }
