@@ -4,5 +4,14 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.10" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\POSTNET.Data\POSTNET.Data.csproj" />
+    <ProjectReference Include="..\POSTNET.Service\POSTNET.Service.csproj" />
+  </ItemGroup>
 
 </Project>
