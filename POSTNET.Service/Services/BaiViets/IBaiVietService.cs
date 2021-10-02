@@ -1,4 +1,5 @@
-﻿using POSTNET.Model.ValueObject.BaiViets;
+﻿using POSTNET.Model.Entities;
+using POSTNET.Model.ValueObject.BaiViets;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace POSTNET.Service.Services.BaiViets
 {
-    public interface IBaiVietService
+    public interface IBaiVietService : IMasterBaseService<BaiViet>
     {
         Task<int> countTongSoBaiViet();
         Task<List<BaiVietGrid>> getDanhSachBaiViet();

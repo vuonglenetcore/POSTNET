@@ -14,4 +14,8 @@
     <ProjectReference Include="..\POSTNET.Service\POSTNET.Service.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\baiviet\" />
+  </ItemGroup>
+
 </Project>

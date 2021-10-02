@@ -11,6 +11,7 @@ namespace POSTNET.Model.Entities
         public bool? HienThiMenu { get; set; }
         public int? ThuTuHienThi { get; set; }
         public bool? HoatDong { get; set; }
+        public long? DanhMucChaId { get; set; }
 
         private ICollection<BaiViet> _baiViets;
         public virtual ICollection<BaiViet> BaiViets

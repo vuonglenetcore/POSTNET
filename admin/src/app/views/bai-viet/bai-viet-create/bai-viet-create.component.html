@@ -1,0 +1,57 @@
+<!-- <ckeditor [editor]="Editor" data="" (ready)="onReady($event)"></ckeditor> -->
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <span style="margin-right: 10px;">Tên bài viết</span> <span class="orange">{{baiViet.Alias}}</span>
+            <input type="text" class="form-control" (keyup)="nhapTenBaiViet($event)" [(ngModel)]="baiViet.TenBaiViet">
+            <input type="text" class="form-control hidden" [(ngModel)]="baiViet.Alias" disabled>
+            <span>Chọn danh mục</span>
+            <select class="form-control" aria-label="Default select example"
+                (change)="chonDanhMuc($event.target.value)">
+                <option value="0" selected>Chọn danh mục</option>
+                <option *ngFor="let item of danhMuc" value="{{item.Id}}">{{item.TenDanhMuc}}</option>
+            </select>
+
+            Thứ tự hiển thị
+            <input style="width: 60px;" min="0" max="100" type="number" class="form-control" [(ngModel)]="baiViet.ThuTuHienThi">
+
+            <span>Hoat động</span>
+            <input type="checkbox" class="btn btn-default" [(ngModel)]="baiViet.HoatDong">
+            <span> Hiển thị trang chủ</span>
+            <input type="checkbox" class="btn btn-default" [(ngModel)]="baiViet.HienThiTrangChu">
+        </div>
+        <div class="col-md-6">
+            <img [src]="hienThiHinhAnh" height="200">
+            <input id="defalt-top" [ngClass]="{'btn-file' : !hienThiHinhAnh}" type='file'
+                (change)="onSelectFile($event)">
+            <span> Hiển thị ảnh bìa</span>
+            <input type="checkbox" class="btn btn-default" [(ngModel)]="baiViet.HienThiAnhBia">
+        </div>
+    </div>
+    <span>Nội dung ngắn</span>
+    <div class="row">
+        <div class="col-md-12 ck-noi-dung-ngan">
+            <ckeditor [(ngModel)]="baiViet.NoiDungNgan" [editor]="Editor" data=""></ckeditor>
+        </div>
+    </div>
+    <span>Nội dung</span>
+    <div class="row">
+        <div class="col-md-12">
+            <ckeditor [(ngModel)]="baiViet.NoiDung" [editor]="Editor" data=""></ckeditor>
+        </div>
+    </div>
+    <div class="row footer">
+        <div class="col-md-8"></div>
+        <div class="col-md-4 d-flex justify-content-end">
+            <button routerLink="/bai-viet" class="btn btn-primary">Quay lại</button>
+            <button (click)="save()" class="btn btn-primary">Lưu</button>
+        </div>
+    </div>
+
+    <div class="row footer2">
+        <div>
+
+        </div>
+    </div>
+</div>

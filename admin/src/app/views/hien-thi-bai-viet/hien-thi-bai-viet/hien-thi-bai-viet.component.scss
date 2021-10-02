@@ -1,0 +1,51 @@
+kendo-tabstrip p {
+  margin: 0;
+  padding: 8px;
+}
+
+.khung,
+.trung-tam,
+.phai-1,
+.phai-2,
+.duoi {
+  border: 3px solid black;
+}
+
+.item-bai-viet {
+  margin: 10px;
+}
+
+.item-bai-viet-ten {
+  color: blue;
+  font-weight: bold;
+}
+.header-danh-muc {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+.btn-danh-muc {
+  margin-right: 10px;
+}
+.box-delete {
+  margin-top: -4px;
+}
+.btn-delete {
+  padding: 0;
+}
+// .btn-add{
+//   margin-left: 25px;
+// }
+.box-btn-add {
+  text-align: right;
+  margin: 0;
+  padding: 2px;
+}
+
+
+
+.content {
+  padding: 30px;
+  color: #787878;
+  background-color: #fcf7f8;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}

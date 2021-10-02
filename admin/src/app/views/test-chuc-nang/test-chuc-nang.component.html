@@ -1,0 +1,12 @@
+<button (click)="sendData()" class="btn btn-danger">gửi data model interceptor đến api</button>
+<br>
+<span>truyền data:any = lên controller, data sẽ được converst thành application/json trong interceptor</span>
+<div *ngIf="data.Id>0" style="margin-top: 15px; width:300px;height: 60px;border: 1px solid grey;border-radius: 5%;">
+    <ul>
+        <li>{{data.Id}}</li>
+        <li>{{data.Name}}</li>
+    </ul>
+    <strong>Đã gửi một model lên api</strong>
+    <button *ngIf="result==='success'" class="btn btn-success">{{result}}</button>
+    <button *ngIf="result==='error'" class="btn btn-danger">{{result}}</button>
+</div>

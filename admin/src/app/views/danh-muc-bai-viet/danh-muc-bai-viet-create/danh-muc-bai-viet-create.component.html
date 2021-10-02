@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <span>Tên danh mục <span class="orange" *ngIf="danhMucBaiViet.Alias"> {{danhMucBaiViet.Alias}}</span></span>
+            <input type="text" (keyup)="nhapTenDanhMucBaiViet()" class="form-control" [(ngModel)]="danhMucBaiViet.TenDanhMuc">
+            <!-- <span>Tên alias - <p>{{}}</p></span>
+            <input type="text" class="form-control" [(ngModel)]="danhMucBaiViet.Alias" disabled> -->
+            <span>Chọn danh mục cha</span>
+            <!-- <input type="text" class="form-control" [(ngModel)]="danhMucBaiViet.DanhMucChaId"> -->
+            <select class="form-control" aria-label="Default select example"
+                (change)="chonDanhMucCha($event.target.value)">
+                <option value="0" selected>Chọn danh mục cha</option>
+                <option *ngFor="let item of danhMucCha" value="{{item.Id}}">{{item.TenDanhMuc}}</option>
+            </select>
+        </div>
+        <div class="col-md-6">
+            <span>Hiển thị lên menu</span>
+            <input type="checkbox" class="form-control" [(ngModel)]="danhMucBaiViet.HienThiMenu">
+            <span>Thứ tự hiển thị</span>
+            <input type="number" class="form-control" [(ngModel)]="danhMucBaiViet.ThuTuHienThi">
+        </div>
+    </div>
+    <div class="row footer">
+        <div class="col-md-10"></div>
+        <div class="col-md-2">
+            <button routerLink="/danh-muc-bai-viet" class="btn btn-primary">Quay lại</button>
+            <button (click)="save()" class="btn btn-primary">Lưu</button>
+        </div>
+    </div>
+</div>

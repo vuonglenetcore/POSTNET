@@ -1,0 +1,28 @@
+<h3>Chọn bài viết Hiển thị trang <b>{{danhMucName}}</b></h3>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <form class="example-form">
+                <div class="row">
+                    <div class="col-md-10">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Assignee</mat-label>
+                            <input type="text" matInput [formControl]="myControl" [matAutocomplete]="auto">
+                            <mat-autocomplete (optionSelected)="onSelectionChange($event)" #auto="matAutocomplete"
+                                [displayWith]="displayFnBaiVIet">
+                                <mat-option id="{{baiViet.Id}}" [attr.data-filedata]="filedata"
+                                    *ngFor="let baiViet of filteredBaiVIets | async" [value]="baiViet.Ten">
+                                    {{baiViet.Ten}}
+                                </mat-option>
+                            </mat-autocomplete>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-2">
+                        <button (click)="themVaoTrang()" class="btn btn-primary btn-them">Thêm</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>

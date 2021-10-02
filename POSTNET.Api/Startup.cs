@@ -48,9 +48,23 @@ namespace POSTNET.Api
             #endregion
 
             services.AddControllersWithViews();
+            services.AddControllers()
+               .AddJsonOptions(options =>
+               {
+                   options.JsonSerializerOptions.PropertyNamingPolicy = null;
+               });
+
+
             #region Cấu hình swagger step 1
             services.AddSwaggerGen();
             #endregion
+
+            services.AddCors(c => c.AddPolicy("TCAPolicy", builder =>
+            {
+                builder.AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader();
+            }));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -78,6 +92,7 @@ namespace POSTNET.Api
             app.UseStaticFiles();
 
             app.UseRouting();
+            app.UseCors("TCAPolicy");
 
             app.UseAuthorization();
 

@@ -11,15 +11,15 @@ namespace POSTNET.Model.Entities
         public string NoiDungNgan { get; set; }
         public string NoiDung { get; set; }
         public string UrlAnhBia { get; set; }
-        public bool HienThiAnhBia { get; set; }
-        public bool HienThiTrangChu { get; set; }
-        public bool HoatDong { get; set; }
-        public int ThuTuHienThi { get; set; }
-        public int LuotXem { get; set; }
-        public int LuotThich { get; set; }
-        public int LuotBinhLuan { get; set; }
-        public int LuotXemAo { get; set; }
-        public int LuotThichAo { get; set; }
+        public bool? HienThiAnhBia { get; set; }
+        public bool? HienThiTrangChu { get; set; }
+        public bool? HoatDong { get; set; }
+        public int? ThuTuHienThi { get; set; }
+        public int? LuotXem { get; set; }
+        public int? LuotThich { get; set; }
+        public int? LuotBinhLuan { get; set; }
+        public int? LuotXemAo { get; set; }
+        public int? LuotThichAo { get; set; }
         public long DanhMucBaiVietId { get; set; }
 
         public virtual DanhMucBaiViet DanhMucBaiViet { get; set; }

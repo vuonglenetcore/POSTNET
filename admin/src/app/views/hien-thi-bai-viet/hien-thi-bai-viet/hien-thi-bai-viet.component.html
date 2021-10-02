@@ -1,0 +1,129 @@
+<!-- <kendo-tabstrip #tabstrip>
+  <kendo-tabstrip-tab [title]="'Paris'" [selected]="true">
+    <ng-template kendoTabContent>
+      <p>
+      Paris is the capital and most populous city of France. It has an area of 105 square kilometres (41 square miles) and a population in 2013 of 2,229,621 within its administrative limits. The city is both a commune and department, and forms the centre and headquarters of the Île-de-France, or Paris Region, which has an area of 12,012 square kilometres (4,638 square miles) and a population in 2014 of 12,005,077, comprising 18.2 percent of the population of France.
+      </p>
+    </ng-template>
+  </kendo-tabstrip-tab>
+  <kendo-tabstrip-tab [title]="'New York City'">
+    <ng-template kendoTabContent>
+      <p>
+        The City of New York, often called New York City or simply New York, is the most populous city in the United States. With an estimated 2015 population of 8,550,405 distributed over a land area of just 305 square miles (790 km2), New York City is also the most densely populated major city in the United States. Located at the southern tip of the state of New York, the city is the center of the New York metropolitan area, one of the most populous urban agglomerations in the world.
+      </p>
+      <p>
+        A global power city, New York City exerts a significant impact upon commerce, finance, media, art, fashion, research, technology, education, and entertainment, its fast pace defining the term New York minute. Home to the headquarters of the United Nations, New York is an important center for international diplomacy and has been described as the cultural and financial capital of the world.
+      </p>
+    </ng-template>
+  </kendo-tabstrip-tab>
+  <kendo-tabstrip-tab [title]="'Tallinn'">
+    <ng-template kendoTabContent>
+      <p>
+        Tallinn is the capital and largest city of Estonia. It is situated on the northern coast of the country, on the shore of the Gulf of Finland, 80 km (50 mi) south of Helsinki, east of Stockholm and west of Saint Petersburg. From the 13th century until 1918 (and briefly during the Nazi occupation of Estonia from 1941 to 1944), the city was known as Reval. Tallinn occupies an area of 159.2 km2 (61.5 sq mi) and has a population of 443,894. Approximately 32% of Estonia's total population lives in Tallinn.
+      </p>
+      <p>
+        Tallinn was founded in 1248, but the earliest human settlements are over 5,000 years old, making it one of the oldest capital cities of Northern Europe. Due to its strategic location, the city became a major trade hub, e bài viếtecially from the 14th to the 16th century, when it grew in importance as part of the Hanseatic League.
+      </p>
+    </ng-template>
+  </kendo-tabstrip-tab>
+  <kendo-tabstrip-tab [title]="'Sydney'" [disabled]="true"></kendo-tabstrip-tab>
+</kendo-tabstrip> -->
+<div class="row header-danh-muc">
+  <div class="col-md-12">
+    <button class="btn btn-primary btn-danh-muc" (click)="getData(0)"><b>Trang chủ</b></button>
+    <button *ngFor="let item of danhMucMenu" (click)="getData(item.DanhMucId)"
+      class="btn btn-primary btn-danh-muc"><b>{{item.ThuTuHienThi}}</b> - {{item.TenDanhMuc}}
+    </button>
+  </div>
+</div>
+<div class="container khung">
+  <div class="row">
+    <div class="col-md-6 trung-tam" style="height: 240px;">
+      <div class="row">
+        <div class="col-md-10">
+          <b>1 (1. bài viết)</b>
+        </div>
+        <div class="col-md-2 box-btn-add">
+          <button (click)="themBaiVIetPopup(1)" class="btn btn-primary btn-add"><i
+              class="fa fa-plus-square"></i></button>
+        </div>
+      </div>
+      <!-- khu 1 -->
+      <div class="row item-bai-viet" *ngFor="let item of baiVietKhu1">
+        <div class="col-md-6 item-bai-viet-ten">{{item.Ten}}</div>
+        <div class="col-md-5">NgayTao: {{item.CreatedOnDisplay}}</div>
+        <div class="col-md-1 box-delete">
+          <button (click)="delete(item.Id)" class="btn btn-delete"><i class="fa fa-trash"></i></button>
+        </div>
+      </div>
+
+    </div>
+    <div class="col-md-6">
+      <div class="row">
+        <div class="col-md-12 phai-1" style="height: 120px;">
+          <div class="row">
+            <div class="col-md-10">
+              <b>2 (2. bài viết)</b>
+            </div>
+            <div class="col-md-2 box-btn-add">
+              <button (click)="themBaiVIetPopup(2)" class="btn btn-primary btn-add"><i
+                  class="fa fa-plus-square"></i></button>
+            </div>
+          </div>
+          <!-- khu 2 -->
+          <div class="row item-bai-viet" *ngFor="let item of baiVietKhu2">
+            <div class="col-md-6 item-bai-viet-ten">{{item.Ten}}</div>
+            <div class="col-md-5">NgayTao: {{item.CreatedOnDisplay}}</div>
+            <div class="col-md-1 box-delete">
+              <button (click)="delete(item.Id)" class="btn btn-delete"><i class="fa fa-trash"></i></button>
+            </div>
+          </div>
+
+        </div>
+        <div class="col-md-12 phai-2" style="height: 120px;">
+          <div class="row">
+            <div class="col-md-10">
+              <b>3 (2. bài viết)</b>
+            </div>
+            <div class="col-md-2 box-btn-add">
+              <button (click)="themBaiVIetPopup(3)" class="btn btn-primary btn-add"><i
+                  class="fa fa-plus-square"></i></button>
+            </div>
+          </div>
+          <!-- khu 3 -->
+          <div class="row item-bai-viet" *ngFor="let item of baiVietKhu3">
+            <div class="col-md-6 item-bai-viet-ten">{{item.Ten}}</div>
+            <div class="col-md-5">NgayTao: {{item.CreatedOnDisplay}}</div>
+            <div class="col-md-1 box-delete">
+              <button (click)="delete(item.Id)" class="btn btn-delete"><i class="fa fa-trash"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row duoi">
+    <div class="col-md-6" style="height: 150px;">
+      <div class="row">
+        <div class="col-md-10">
+          <b>4(4. bài viết)</b>
+        </div>
+        <div class="col-md-2 box-btn-add">
+          <button  (click)="themBaiVIetPopup(4)" class="btn btn-primary btn-add"><i
+              class="fa fa-plus-square"></i></button>
+        </div>
+      </div>
+      <!-- khu 4 -->
+      <div class="row item-bai-viet" *ngFor="let item of baiVietKhu4">
+        <div class="col-md-6 item-bai-viet-ten">{{item.Ten}}</div>
+        <div class="col-md-5">NgayTao: {{item.CreatedOnDisplay}}</div>
+        <div class="col-md-1 box-delete">
+          <button (click)="delete(item.Id)" class="btn btn-delete"><i class="fa fa-trash"></i></button>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="col-md-3" style="height: 150px;">2</div>
+    <div class="col-md-3" style="height: 150px;">3</div>
+    <div class="col-md-3" style="height: 150px;">4</div> -->
+  </div>
+</div>

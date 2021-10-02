@@ -1,0 +1,59 @@
+<div class="container">
+    <div class="row header">
+        <div class="col-md-10">
+
+        </div>
+        <div class="col-md-2">
+            <button class="btn btn-primary" (click)="themBaiViet()">Thêm</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <p>Tìm theo danh mục</p>
+            <select class="form-control" aria-label="Default select example"
+                (change)="chonDanhMuc($event.target.value)">
+                <option value="0" selected>Chọn danh mục</option>
+                <option *ngFor="let item of danhMuc" value="{{item.Id}}">{{item.TenDanhMuc}}</option>
+            </select>
+        </div>
+        <div class="col-md-12">
+            <table class="table table-border">
+                <tr>
+                    <!-- <th width="10px">ID</th> -->
+                    <th>Tên bài viết</th>
+                    <th>Danh mục</th>
+                    <th>Ngày tạo</th>
+                    <th>Hoạt động</th>
+                    <th>Hiển thị trang chủ</th>
+                    <th>Lượt xem (thực + ảo)</th>
+                    <th>Lượt thích (thực + ảo)</th>
+                    <th></th>
+                </tr>
+                <tr *ngFor="let item of baiViets">
+                    <!-- <td><a [routerLink]="['/danh-muc-bai-viet/them',item.Id]">{{item.Id}}</a></td> -->
+                    <td><b><a [routerLink]="['/bai-viet/chinh-sua',item.Id]">{{item.Ten}}</a></b></td>
+                    <td>{{item.TenDanhMuc}}</td>
+                    <td>{{item.CreatedOnDisplay}}</td>
+                    <td>
+                        <p *ngIf="item.HoatDong">Có</p>
+                        <p *ngIf="!item.HoatDong">Không</p>
+                    </td>
+                    <td>
+                        <p *ngIf="item.HienThiTrangChu">Có</p>
+                        <p *ngIf="!item.HienThiTrangChu">Không</p>
+                    </td>
+                    <td><b>{{item.LuotXem + item.LuotXemAo}}</b> = {{item.LuotXem}} + {{item.LuotXemAo}}</td>
+                    <td><b>{{item.LuotThich + item.LuotThichAo}}</b> = {{item.LuotThich}} + {{item.LuotThichAo}}</td>
+                    <td>
+                        <div>
+
+                            <button (click)="delete(item.Id)" class="btn"><i class="fa fa-trash"></i></button>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <button (click)="reload()" class="btn"><i class="fa fa-trash"></i>reload</button>
+        </div>
+    </div>
+
+</div>

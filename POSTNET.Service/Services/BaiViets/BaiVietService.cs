@@ -24,7 +24,7 @@ namespace POSTNET.Service.Services.BaiViets
         {
             var tongSoBaiViet = _repository.TableNoTracking.Where(x => x.HoatDong != true).Select(x => x.Id);
             return await tongSoBaiViet.CountAsync();
-        }        
+        }
 
         //public async Task<List<CauHinhHienThiBaiVietVo>> GetBaiVietHienThi(long danhMucId, int viTriBaiViet)
         //{
@@ -74,21 +74,25 @@ namespace POSTNET.Service.Services.BaiViets
         //    return data;
         //}
 
-        
+
 
         //admin
         public async Task<List<BaiVietGrid>> getDanhSachBaiViet()
         {
-            var listBaiViet = await _repository.TableNoTracking.Where(x => x.HoatDong != true).Include(x => x.DanhMucBaiViet).Select(s => new BaiVietGrid
+            var listBaiViet = await _repository.TableNoTracking.Include(x => x.DanhMucBaiViet).Select(s => new BaiVietGrid
             {
                 Id = s.Id,
                 Ten = s.TenBaiViet,
                 NoiDung = s.NoiDung,
                 HinhAnh = s.UrlAnhBia,
-                HienThi = s.HienThiAnhBia,
+                HoatDong = s.HoatDong,
+                HienThiTrangChu = s.HienThiTrangChu,
+                HienThiAnhBia = s.HienThiAnhBia,
                 ThuTuHienThi = s.ThuTuHienThi,
-                LuotXemAo = s.LuotXemAo,
-                LuotXem = s.LuotXem,
+                LuotXemAo = s.LuotThichAo == null ? 0 : s.LuotThichAo,
+                LuotXem = s.LuotXem == null ? 0 : s.LuotXem,
+                LuotThich = s.LuotThich == null ? 0 : s.LuotThich,
+                LuotThichAo = s.LuotThichAo == null ? 0 : s.LuotThichAo,
                 CreatedOn = s.NgayTao,
                 CreatedOnDisplay = s.NgayTao.ToString("dd-MM/yyyy"),
                 TenDanhMuc = s.DanhMucBaiViet.TenDanhMuc
@@ -99,7 +103,7 @@ namespace POSTNET.Service.Services.BaiViets
 
         public async Task<List<BaiVietGrid>> getDanhSachBaiVietTheoDanhMucId(long danhMucId)
         {
-            var listBaiViet = await _repository.TableNoTracking.Where(x => x.DanhMucBaiVietId == danhMucId && x.HoatDong != true)
+            var listBaiViet = await _repository.TableNoTracking.Where(x => x.DanhMucBaiVietId == danhMucId)
                 .Include(x => x.DanhMucBaiViet)
                 .OrderBy(x => x.ThuTuHienThi).Select(s => new BaiVietGrid
                 {
@@ -107,7 +111,8 @@ namespace POSTNET.Service.Services.BaiViets
                     Ten = s.TenBaiViet,
                     NoiDung = s.NoiDung,
                     HinhAnh = s.UrlAnhBia,
-                    HienThi = s.HienThiAnhBia,
+                    HoatDong = s.HoatDong,
+                    HienThiAnhBia = s.HienThiAnhBia,
                     ThuTuHienThi = s.ThuTuHienThi,
                     LuotXemAo = s.LuotXemAo,
                     LuotXem = s.LuotXem,

@@ -1,0 +1,40 @@
+<div class="container">
+    <div class="row header">
+        <div class="col-md-10">
+
+        </div>
+        <div class="col-md-2">
+            <button class="btn btn-primary" (click)="themDanhMuc()">Thêm</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-border">
+                <tr>
+                    <th width="10px">STT</th>
+                    <th>Tên danh mục</th>
+                    <th>Hiển thị menu</th>
+                    <th>Thứ tự hiển thị</th>
+                    <th>Ngày tạo</th>
+                    <th></th>
+                </tr>
+                <tr *ngFor="let item of danhMucBaiViets; let stt = index">
+                    <td><b>{{stt + 1}}</b></td>
+                    <td><b><a [routerLink]="['/danh-muc-bai-viet/chinh-sua',item.Id]">{{item.TenDanhMuc}}</a></b></td>
+                    <td>
+                        <p *ngIf="item.HienThiMenu">Có</p>
+                        <p *ngIf="!item.HienThiMenu">Không</p>
+                    </td>
+                    <td>{{item.ThuTuHienThi}}</td>
+                    <td>{{item.NgayTao}}</td>
+                    <td>
+                        <div>
+                            <button (click)="delete(item.Id, item.TenDanhMuc)" class="btn"><i class="fa fa-trash"></i></button>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+</div>
