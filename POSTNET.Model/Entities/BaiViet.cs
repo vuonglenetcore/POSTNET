@@ -14,7 +14,8 @@ namespace POSTNET.Model.Entities
         public bool? HienThiAnhBia { get; set; }
         public bool? HienThiTrangChu { get; set; }
         public bool? HoatDong { get; set; }
-        public int? ThuTuHienThi { get; set; }
+        public int? ThuTuHienThiTrangChu { get; set; }
+        public int? ThuTuHienThiTrangDanhMuc { get; set; }
         public int? LuotXem { get; set; }
         public int? LuotThich { get; set; }
         public int? LuotBinhLuan { get; set; }

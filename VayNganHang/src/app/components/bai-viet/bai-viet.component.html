@@ -1,0 +1,114 @@
+<div class="container content-bai-viet">
+    <div class="row">
+        <div class="col-md-9 pad-content-left">
+            <h1>{{baiViet.TenBaiViet}}</h1>
+            <!-- <p>
+                <b>Bình Dương</b> - Trên các tài khoản mạng xã hội, Sienna Mae Gomez (Mỹ) liên tục phủ nhận các cáo buộc
+                và cho biết sẽ có
+                hành động pháp lý để giải quyết sự việc.
+                Sự việc ầm ĩ nổ ra khi Mason Rizzo, bạn của Jack Wright (bạn trai cũ Sienna) cáo buộc nữ TikToker 17
+                tuổi tấn công tình dục và lạm dụng lời nói với Jack, theo Insider.
+            </p> -->
+
+            <div class="title-date">
+                <i class="fa fa-clock-o">
+                </i>&nbsp;&nbsp;{{baiViet.NgayTaoDisplay}}
+                &nbsp;&nbsp; &nbsp;&nbsp;<i class="fa fa-eye"></i> &nbsp;&nbsp;{{baiViet.LuotXem}}
+                &nbsp;&nbsp; &nbsp;&nbsp; <i class="fa fa-comments"></i> &nbsp;&nbsp; 5
+            </div>
+            <div class="nhan-vat">
+                <div class="row">
+                    <!-- <div class="col-md-12 title-nv">
+                        <p class="blue-color"><b>{{baiViet.DiaDiemNV}}: {{baiViet.TenNhanVat}} -
+                                {{baiViet.NoiDungNV}}</b></p>
+                    </div> -->
+                    <div class="col-md-6 img-nv">
+                        <img src="{{baiViet.HinhAnhUrl}}" alt="">
+                    </div>
+                    <div class="col-md-6 diem-nv">
+                        <div class="row title-tt">
+                            <div class="col-md-4">
+                                <b ><u> Tóm tắt nhanh:</u></b>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div [innerHTML]="baiViet.NoiDungTomTat">
+
+                                </div>
+                            </div>
+                        </div>
+                       
+                    </div>
+
+                    <div class="col-md-12">
+                        <hr>
+                        <div class="cam-xuc">
+                            <button (click)="tangLike(baiViet.Id)" class="btn btn-sm btn-prinamy"><img
+                                    src="https://localhost:5001//camxuc/imglike.png" alt=""><b class="cam-xuc-text">
+                                    100</b> </button>
+                            <button (click)="tangGian(baiViet.Id)" class="btn btn-sm btn-prinamy"><img
+                                    src="https://localhost:5001//camxuc/imggian.png" alt=""> <b class="cam-xuc-text">
+                                    100</b> </button>
+                            <button (click)="tangCuoi(baiViet.Id)" class="btn btn-sm btn-prinamy"><img
+                                    src="https://localhost:5001//camxuc/imghaha.png" alt=""><b class="cam-xuc-text">
+                                    100</b> </button>
+                            <button (click)="tangBuon(baiViet.Id)" class="btn btn-sm btn-prinamy"><img
+                                    src="https://localhost:5001//camxuc/imgghet.png" alt=""><b class="cam-xuc-text">
+                                    100</b> </button>
+                        </div>
+                        <hr>
+                    </div>
+                </div>
+
+            </div>
+            <!-- <div *ngIf="baiViet.HienThiAnh" class="img-bai-viet">
+                <img src="{{baiViet.HinhAnhUrl}}" alt="">
+            </div> -->
+            <div class="content" [innerHTML]="baiViet.NoiDung">
+            </div>
+        </div>
+        <div class="col-md-3">
+            <!-- quảng cáo -->
+        </div>
+    </div>
+</div>
+
+<div class="container pt-3">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="fh5co_heading fh5co_heading_border_bottom py-2 mb-4">Trending</div>
+        </div>
+    </div>
+    <div class="row">
+        <div *ngFor="let item of listBaiVietTrangChu" class="col-md-8">
+            <div class="row pb-4">
+              <div class="col-md-4 col-sm-5 col-6 baiviet-hinh">
+                <div class="fh5co_hover_news_img">
+                  <div class="fh5co_news_img"><img
+                      src="{{item.HinhAnhUrl}}"
+                      alt="" /></div>
+                  <div></div>
+                </div>
+              </div>
+              <div class="col-md-8 col-sm-7 col-6 ">
+                <div class="">
+                  <h1 class="title-post">
+                    <a href="single.html"> {{item.TenBaiViet}}</a>
+                  </h1>
+                </div>
+                <div class=""><a href="#" class="color_fff"> <i
+                  class="fa fa-clock-o"></i>&nbsp;&nbsp;{{item.NgayTaoDisplay}}
+                &nbsp;&nbsp;<i class="fa fa-eye"></i> &nbsp;&nbsp;{{item.LuotXem}}</a></div>
+           
+                <div class="fh5co_consectetur baiviet-noidung" [innerHTML]="item.NoiDungNgan">
+                </div>
+              </div>
+            </div>
+          </div>
+        <div class="col-md-4">
+            <!-- quảng cáo -->
+        </div>
+    </div>
+
+</div>

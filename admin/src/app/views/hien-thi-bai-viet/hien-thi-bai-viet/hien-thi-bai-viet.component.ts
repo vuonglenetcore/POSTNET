@@ -45,33 +45,35 @@ export class HienThiBaiVietComponent implements OnInit {
   }
   getData(danhMucId) {
     this.danhMucId = danhMucId;
-    this.getBaiVietKhuVuc1(danhMucId);
-    this.getBaiVietKhuVuc2(danhMucId);
-    this.getBaiVietKhuVuc3(danhMucId);
-    this.getBaiVietKhuVuc4(danhMucId);
+    this.getBaiVietKhuVuc(danhMucId);
   }
 
-  getBaiVietKhuVuc1(danhMucId) {
-    this.apiService.get(`BaiViet/GetBaiVietHienThi/${danhMucId}/${1}`).toPromise().then((data) => {
-      this.baiVietKhu1 = data;
+  getBaiVietKhuVuc(danhMucId) {
+    this.apiService.get(`BaiViet/GetBaiVietHienThi/${danhMucId}`).toPromise().then((data: any) => {
+      if (data) {
+        this.baiVietKhu1 = data.filter(x => x.ViTri == 1);
+        this.baiVietKhu2 = data.filter(x => x.ViTri == 2);
+        this.baiVietKhu3 = data.filter(x => x.ViTri == 3);
+        this.baiVietKhu4 = data.filter(x => x.ViTri == 4);
+      }
       console.log(this.baiVietKhu1)
     })
   }
-  getBaiVietKhuVuc2(danhMucId) {
-    this.apiService.get(`BaiViet/GetBaiVietHienThi/${danhMucId}/${2}`).toPromise().then((data) => {
-      this.baiVietKhu2 = data;
-    })
-  }
-  getBaiVietKhuVuc3(danhMucId) {
-    this.apiService.get(`BaiViet/GetBaiVietHienThi/${danhMucId}/${3}`).toPromise().then((data) => {
-      this.baiVietKhu3 = data;
-    })
-  }
-  getBaiVietKhuVuc4(danhMucId) {
-    this.apiService.get(`BaiViet/GetBaiVietHienThi/${danhMucId}/${4}`).toPromise().then((data) => {
-      this.baiVietKhu4 = data;
-    })
-  }
+  // getBaiVietKhuVuc2(danhMucId) {
+  //   this.apiService.get(`BaiViet/GetBaiVietHienThi/${danhMucId}/${2}`).toPromise().then((data) => {
+  //     this.baiVietKhu2 = data;
+  //   })
+  // }
+  // getBaiVietKhuVuc3(danhMucId) {
+  //   this.apiService.get(`BaiViet/GetBaiVietHienThi/${danhMucId}/${3}`).toPromise().then((data) => {
+  //     this.baiVietKhu3 = data;
+  //   })
+  // }
+  // getBaiVietKhuVuc4(danhMucId) {
+  //   this.apiService.get(`BaiViet/GetBaiVietHienThi/${danhMucId}/${4}`).toPromise().then((data) => {
+  //     this.baiVietKhu4 = data;
+  //   })
+  // }
 
 
   public onToggle(): void {
@@ -79,7 +81,7 @@ export class HienThiBaiVietComponent implements OnInit {
     this.toggleText = this.show ? "Hidе" : "Show";
   }
 
-  themBaiVIetPopup(viTriId) {
+  themBaiVietPopup(viTriId) {
     let danhMucName = "Trang chủ";
     if (this.danhMucId > 0) {
       danhMucName = this.danhMucMenu.filter(x => x.DanhMucId == this.danhMucId)[0].TenDanhMuc;
@@ -96,7 +98,7 @@ export class HienThiBaiVietComponent implements OnInit {
       },
     })
       .afterClosed(
-        
+
       )
       .subscribe((result) => {
         this.getData(this.danhMucId);
@@ -105,10 +107,12 @@ export class HienThiBaiVietComponent implements OnInit {
         }
       });
   }
-  delete(idHienThi) {
-    this.apiService.delete(`CauHinhHienThiBaiViet/Delete/${idHienThi}`).toPromise().then((data) => {
-      this.toastr.success('Xóa thành công!');
-      this.getData(this.danhMucId);
+  delete(baiVietId) {
+    this.apiService.delete(`CauHinhHienThiBaiViet/Delete/${this.danhMucId}/${baiVietId}`).toPromise().then((data) => {
+      if(data){
+        this.toastr.success('Xóa khỏi danh sách thành công!');
+        this.getData(this.danhMucId);
+      }
     })
   }
 }

@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { ApiService } from '../../../services/api.service';
@@ -19,10 +20,9 @@ export interface BaiViet {
 })
 export class ThemBaiVietPopupComponent implements OnInit {
   myControl = new FormControl();
-  listBaiVIet: any = [];
+  listBaiViet: any = [];
   danhMucName: string = "Trang chủ";
   danhMucId: number = 0;
-  viTriId: number;
   baiVietId: number;
   options: any = [
     { name: 'Mary', id: 1 },
@@ -30,15 +30,15 @@ export class ThemBaiVietPopupComponent implements OnInit {
     { name: 'Igor', id: 3 }
   ];
   filteredOptions: Observable<any[]>;
-  filteredBaiVIets: Observable<any[]>;
+  filteredBaiViets: Observable<any[]>;
 
-  constructor(private apiService: ApiService, @Inject(MAT_DIALOG_DATA) public data, private matDialog: MatDialog) { }
+  constructor(private apiService: ApiService, @Inject(MAT_DIALOG_DATA) public data, private matDialog: MatDialog,
+  private toastr : ToastrService) { }
 
   ngOnInit() {
     this.danhMucId = this.data.danhMucId;
     this.danhMucName = this.data.danhMucName;
-    this.viTriId = this.data.viTriId;
-    this.GetThemBaiVietChoTrang(this.danhMucId, this.viTriId);
+    this.GetThemBaiVietChoTrang(this.data.danhMucId);
   }
 
   displayFn(user: any): string {
@@ -52,26 +52,24 @@ export class ThemBaiVietPopupComponent implements OnInit {
   private _filter(Ten: string): any[] {
     const filterValue = Ten.toLowerCase();
 
-    return this.listBaiVIet.filter(baiViet => baiViet.Ten.toLowerCase().indexOf(filterValue) === 0);
+    return this.listBaiViet.filter(baiViet => baiViet.Ten.toLowerCase().indexOf(filterValue) === 0);
   }
 
-  GetThemBaiVietChoTrang(danhMucId, viTriId) {
-    this.apiService.get(`CauHinhHienThiBaiViet/GetThemBaiVietChoTrang/${danhMucId}/${viTriId}`).toPromise().then((data) => {
-      this.listBaiVIet = data;
+  GetThemBaiVietChoTrang(danhMucId) {
+    this.apiService.get(`CauHinhHienThiBaiViet/GetThemBaiVietChoTrang/${danhMucId}`).toPromise().then((data) => {
+      this.listBaiViet = data;
       this.filteredOptions = this.myControl.valueChanges
         .pipe(
           startWith(''),
           map(value => typeof value === 'string' ? value : value.name),
           map(name => name ? this._filter(name) : this.options.slice())
         );
-      this.filteredBaiVIets = this.myControl.valueChanges
+      this.filteredBaiViets = this.myControl.valueChanges
         .pipe(
           startWith(''),
           map(value => typeof value === 'string' ? value : value.Ten),
-          map(Ten => Ten ? this._filter(Ten) : this.listBaiVIet.slice())
+          map(Ten => Ten ? this._filter(Ten) : this.listBaiViet.slice())
         );
-      console.log(this.listBaiVIet);
-      console.log(this.filteredOptions);
     })
   }
 
@@ -80,13 +78,16 @@ export class ThemBaiVietPopupComponent implements OnInit {
     return this.baiVietId;
   }
   themVaoTrang() {
-    let request: any = {
+    let baiViet: any = {
       BaiVietId: this.baiVietId,
       DanhMucId: this.danhMucId,
-      ViTriId: this.viTriId,
+      VitriId: this.data.viTriId
     }
-    this.apiService.post(`CauHinhHienThiBaiViet/ThemCauHinhBaiViet`, request).toPromise().then((data: any) => {
-      this.matDialog.closeAll();
+    this.apiService.post(`CauHinhHienThiBaiViet/ThemCauHinhBaiViet`, baiViet).toPromise().then((data: any) => {
+      if (data) {
+        this.toastr.success('Thêm thành công!');
+        this.matDialog.closeAll();
+      }
     }, (error) => {
       console.log(error)
     });

@@ -1,0 +1,19 @@
+.color-blue{
+    color: blue;
+}
+.login-mxh{
+    margin-bottom: 19px;
+}
+
+.btn-register{height: 28px;}
+
+.div-register{
+    margin-top: 84px;
+}
+
+.login-fb, .login-gg, button{
+    cursor: pointer;
+}
+form{
+    overflow-y: auto;
+}

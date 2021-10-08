@@ -11,8 +11,8 @@
                             <mat-autocomplete (optionSelected)="onSelectionChange($event)" #auto="matAutocomplete"
                                 [displayWith]="displayFnBaiVIet">
                                 <mat-option id="{{baiViet.Id}}" [attr.data-filedata]="filedata"
-                                    *ngFor="let baiViet of filteredBaiVIets | async" [value]="baiViet.Ten">
-                                    {{baiViet.Ten}}
+                                    *ngFor="let baiViet of filteredBaiViets | async" [value]="baiViet.TenBaiViet">
+                                    {{baiViet.TenBaiViet}}
                                 </mat-option>
                             </mat-autocomplete>
                         </mat-form-field>

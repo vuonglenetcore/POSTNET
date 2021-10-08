@@ -1,0 +1,117 @@
+<div class="container page-content">
+  <div class="row">
+    <div class="col-md-6 col-12">
+      <div *ngFor="let item of baiVietKV1" class="">
+        <div class="">
+          <img [routerLink]="['/bai-viet/',item.Id]" class="img-main" src="{{item.HinhAnhUrl}}" alt="{{item.Alias}}" />
+
+        </div>
+        <div class="baiviet-main">
+          <div class="">
+            <h1 class="title-post">
+              <a [routerLink]="['/bai-viet/',item.Id]" class=""> {{item.TenBaiViet}} </a>
+            </h1>
+          </div>
+          <div class="">
+            <i class="fa fa-clock-o">
+            </i>&nbsp;&nbsp;{{item.NgayTaoDisplay}}
+            &nbsp;&nbsp; &nbsp;&nbsp;<i class="fa fa-eye"></i> &nbsp;&nbsp;{{item.LuotXem}}
+            &nbsp;&nbsp; &nbsp;&nbsp; <i class="fa fa-comments"></i> &nbsp;&nbsp;5
+
+          </div>
+          <div [innerHTML]="item.NoiDungNgan">
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 col-12">
+      <div class="row">
+        <div *ngFor="let item of baiVietKV2" class="col-md-6 col-12  " data-animate-effect="fadeIn">
+          <div class="fh5co_suceefh5co_height_2 ">
+            <div class="fh5co_suceefh5co_height_position_absolute">
+              <div class="content" style="height: 60%; ">
+                <img [routerLink]="['/bai-viet/',item.Id]" style="height: 100%; width: 100%; " src="{{item.HinhAnhUrl}}"
+                  alt="img" />
+
+              </div>
+
+            </div>
+            <div class="fh5co_suceefh5co_height_position_absolute_font_2">
+              <div class="">
+                <h1 class="title-post-small">
+                  <a [routerLink]="['/bai-viet/',item.Id]">{{item.TenBaiViet}}</a>
+                </h1>
+              </div>
+              <div class=""><a href="#" class="color_fff"> <i
+                    class="fa fa-clock-o"></i>&nbsp;&nbsp;{{item.NgayTaoDisplay}}
+                  &nbsp;&nbsp;<i class="fa fa-eye"></i> &nbsp;&nbsp;{{item.LuotXem}}</a></div>
+            </div>
+          </div>
+        </div>
+        <!-- //khu vực 3 -->
+        <div *ngFor="let item of baiVietKV3" class="col-md-6 col-12  " data-animate-effect="fadeIn">
+          <div class="fh5co_suceefh5co_height_2 ">
+            <div class="fh5co_suceefh5co_height_position_absolute">
+              <div class="content" style="height: 60%; ">
+                <img [routerLink]="['/bai-viet/',item.Id]" style="height: 100%; width: 100%; " src="{{item.HinhAnhUrl}}"
+                  alt="img" />
+
+              </div>
+
+            </div>
+            <div class="fh5co_suceefh5co_height_position_absolute_font_2">
+              <div class="">
+                <h1 class="title-post-small">
+                  <a [routerLink]="['/bai-viet/',item.Id]">{{item.TenBaiViet}}</a>
+                </h1>
+              </div>
+              <div class=""><a href="#" class="color_fff"> <i
+                    class="fa fa-clock-o"></i>&nbsp;&nbsp;{{item.NgayTaoDisplay}}
+                  &nbsp;&nbsp; &nbsp;&nbsp;<i class="fa fa-eye"></i> &nbsp;&nbsp;{{item.LuotXem}}</a></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container pt-3">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="fh5co_heading fh5co_heading_border_bottom py-2 mb-4">Tin trong ngày</div>
+    </div>
+  </div>
+  <div class="row">
+    <div *ngFor="let item of listBaiVietTrangChu" class="col-md-8">
+      <div class="row pb-4">
+        <div class="col-md-4 col-sm-5 col-6 baiviet-hinh">
+          <div class="fh5co_hover_news_img">
+            <div class="fh5co_news_img"><img
+                src="{{item.HinhAnhUrl}}"
+                alt="" /></div>
+            <div></div>
+          </div>
+        </div>
+        <div class="col-md-8 col-sm-7 col-6 ">
+          <div class="">
+            <h1 class="title-post">
+              <a href="single.html"> {{item.TenBaiViet}}</a>
+            </h1>
+          </div>
+          <div class=""><a href="#" class="color_fff"> <i
+            class="fa fa-clock-o"></i>&nbsp;&nbsp;{{item.NgayTaoDisplay}}
+          &nbsp;&nbsp;<i class="fa fa-eye"></i> &nbsp;&nbsp;{{item.LuotXem}}</a></div>
+     
+          <div class="fh5co_consectetur baiviet-noidung" [innerHTML]="item.NoiDungNgan">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      quangh3 cáo
+    </div>
+  </div>
+</div>

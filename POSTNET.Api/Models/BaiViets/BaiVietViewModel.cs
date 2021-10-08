@@ -19,7 +19,7 @@ namespace POSTNET.Api.Models.BaiViets
         public string UrlAnhBia { get; set; }
         public bool? HienThiAnhBia { get; set; }
         public bool? HienThiTrangChu { get; set; }
-        public int? ThuTuHienThi { get; set; }
+        public int? ThuTuHienThiTrangDanhMuc { get; set; }
         public long DanhMucId { get; set; }
         public string TenDanhMuc { get; set; }
     }

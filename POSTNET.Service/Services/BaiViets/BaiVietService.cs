@@ -26,53 +26,36 @@ namespace POSTNET.Service.Services.BaiViets
             return await tongSoBaiViet.CountAsync();
         }
 
-        //public async Task<List<CauHinhHienThiBaiVietVo>> GetBaiVietHienThi(long danhMucId, int viTriBaiViet)
-        //{
-        //    int sobanGhi = 0;
-        //    switch (viTriBaiViet)
-        //    {
-        //        case 1:
-        //            sobanGhi = 1;
-        //            break;
-        //        case 2:
-        //            sobanGhi = 2;
-        //            break;
-        //        case 3:
-        //            sobanGhi = 2;
-        //            break;
-        //        case 4:
-        //            sobanGhi = 4;
-        //            break;
-        //    }
+        public async Task<List<CauHinhHienThiBaiVietVo>> GetBaiVietHienThi(long danhMucId)
+        {
+            int[] thuTuHienThis = { 1, 2, 3, 4};
+            if (danhMucId == 0)
+            {
+                var dataHome = await _repository.TableNoTracking
+                .Where(x => x.HienThiTrangChu == true && thuTuHienThis.Contains(x.ThuTuHienThiTrangChu.Value))
+                .Select(s => new CauHinhHienThiBaiVietVo
+                {
+                    Id = s.Id,
+                    DanhMucId = s.DanhMucBaiVietId,
+                    TenBaiViet = s.TenBaiViet.Length <= 30 ? s.TenBaiViet : s.TenBaiViet.Substring(0, 27) + "...",
+                    NgayTao = s.NgayTao,
+                    ViTri = s.ThuTuHienThiTrangChu
+                }).ToListAsync();
 
-        //    if (danhMucId == 0)
-        //    {
-        //        var dataHome = await _cauHinhHienThiBaiVietRepository.TableNoTracking
-        //        .Where(x => x.DanhMucId == null && x.ViTriHienThi == viTriBaiViet)
-        //        .Select(s => new CauHinhHienThiBaiVietVo
-        //        {
-        //            Id = s.Id,
-        //            BaiVIetId = s.BaiVietId,
-        //            Ten = s.BaiViet.Ten.Length <= 30 ? s.BaiViet.Ten : s.BaiViet.Ten.Substring(0, 27) + "...",
-        //            CreatedOn = s.BaiViet.CreatedOn,
-        //            CreatedOnDisplay = s.BaiViet.CreatedOn.ToString("dd-MM/yyyy")
-        //        }).Take(sobanGhi).ToListAsync();
+                return dataHome;
+            }
+            var data = await _repository.TableNoTracking
+                .Where(x => x.DanhMucBaiVietId == danhMucId && thuTuHienThis.Contains(x.ThuTuHienThiTrangDanhMuc.Value))
+                .Select(s => new CauHinhHienThiBaiVietVo
+                {
+                    Id = s.Id,
+                    TenBaiViet = s.TenBaiViet.Length <= 30 ? s.TenBaiViet : s.TenBaiViet.Substring(0, 27) + "...",
+                    NgayTao = s.NgayTao,
+                    ViTri = s.ThuTuHienThiTrangDanhMuc
+                }).ToListAsync();
 
-        //        return dataHome;
-        //    }
-        //    var data = await _cauHinhHienThiBaiVietRepository.TableNoTracking
-        //        .Where(x => x.DanhMucId == danhMucId && x.ViTriHienThi == viTriBaiViet)
-        //        .Select(s => new CauHinhHienThiBaiVietVo
-        //        {
-        //            Id = s.Id,
-        //            BaiVIetId = s.BaiVietId,
-        //            Ten = s.BaiViet.Ten.Length <= 30 ? s.BaiViet.Ten : s.BaiViet.Ten.Substring(0, 27) + "...",
-        //            CreatedOn = s.BaiViet.CreatedOn,
-        //            CreatedOnDisplay = s.BaiViet.CreatedOn.ToString("dd-MM/yyyy")
-        //        }).Take(viTriBaiViet).ToListAsync();
-
-        //    return data;
-        //}
+            return data;
+        }
 
 
 
@@ -88,7 +71,7 @@ namespace POSTNET.Service.Services.BaiViets
                 HoatDong = s.HoatDong,
                 HienThiTrangChu = s.HienThiTrangChu,
                 HienThiAnhBia = s.HienThiAnhBia,
-                ThuTuHienThi = s.ThuTuHienThi,
+                ThuTuHienThiTrangDanhMuc = s.ThuTuHienThiTrangDanhMuc,
                 LuotXemAo = s.LuotThichAo == null ? 0 : s.LuotThichAo,
                 LuotXem = s.LuotXem == null ? 0 : s.LuotXem,
                 LuotThich = s.LuotThich == null ? 0 : s.LuotThich,
@@ -105,7 +88,7 @@ namespace POSTNET.Service.Services.BaiViets
         {
             var listBaiViet = await _repository.TableNoTracking.Where(x => x.DanhMucBaiVietId == danhMucId)
                 .Include(x => x.DanhMucBaiViet)
-                .OrderBy(x => x.ThuTuHienThi).Select(s => new BaiVietGrid
+                .OrderBy(x => x.ThuTuHienThiTrangDanhMuc).Select(s => new BaiVietGrid
                 {
                     Id = s.Id,
                     Ten = s.TenBaiViet,
@@ -113,7 +96,7 @@ namespace POSTNET.Service.Services.BaiViets
                     HinhAnh = s.UrlAnhBia,
                     HoatDong = s.HoatDong,
                     HienThiAnhBia = s.HienThiAnhBia,
-                    ThuTuHienThi = s.ThuTuHienThi,
+                    ThuTuHienThiTrangDanhMuc = s.ThuTuHienThiTrangDanhMuc,
                     LuotXemAo = s.LuotXemAo,
                     LuotXem = s.LuotXem,
                     CreatedOn = s.NgayTao,
@@ -124,23 +107,23 @@ namespace POSTNET.Service.Services.BaiViets
             return listBaiViet;
         }
 
-        public async Task<List<CauHinhHienThiBaiVietVo>> GetThemBaiVietChoTrang(long danhMucId, int viTriBaiViet)
+        public async Task<List<CauHinhHienThiBaiVietVo>> GetThemBaiVietChoTrang(long danhMucId)
         {
+            int[] thuTuHienThis = { 1, 2, 3, 4};
             var data = _repository.TableNoTracking;
             if (danhMucId == 0)
             {
-                data = data.Where(x => x.HoatDong != true);
+                data = data.Where(x => x.HoatDong == true && !thuTuHienThis.Contains(x.ThuTuHienThiTrangChu.Value));
             }
             else
             {
-                data = data.Where(x => x.DanhMucBaiVietId == danhMucId && x.HoatDong != true);
+                data = data.Where(x => x.DanhMucBaiVietId == danhMucId && x.HoatDong == true && !thuTuHienThis.Contains(x.ThuTuHienThiTrangDanhMuc.Value));
             }
             var result = await data.Select(s => new CauHinhHienThiBaiVietVo
             {
                 Id = s.Id,
-                BaiVIetId = s.Id,
-                Ten = s.TenBaiViet,
-                CreatedOn = s.NgayTao
+                TenBaiViet = s.TenBaiViet,
+                NgayTao = s.NgayTao
             }).ToListAsync();
 
             return result;

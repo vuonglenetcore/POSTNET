@@ -1,0 +1,93 @@
+.nhan-vat {
+    text-align: center;
+    width: 99.5%;
+}
+.content-bai-viet {
+    margin-top: 10px;
+}
+.title-date {
+    margin-top: -12px;
+    margin-bottom: 10px;
+}
+.img-nv {
+    /* //border: 1px solid grey; */
+    /* border-bottom: 1px solid grey; */
+    /* border-radius: 5px; */
+}
+.img-nv img {
+    width: 100%;
+    /* height: 350px; */
+}
+.diem-nv {
+    /* border: 1px solid grey;
+    border-radius: 5px; */
+    text-align: left;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.blue-color {
+    color: blue;
+}
+.title-nv {
+    text-align: left;
+}
+.customRange {
+    margin-bottom: 0 !important;
+}
+.range-val-min,
+.range-val-max {
+    margin-bottom: -5px;
+}
+
+.range-val-max {
+    margin-left: 98px;
+}
+
+.rangeDiem {
+    margin-right: 10px !important;
+}
+.diem-nv-footer {
+    text-align: center;
+}
+.cam-xuc button {
+    color: rgb(84, 84, 247);
+    margin-right: 10px;
+}
+.cam-xuc-text {
+    color: rgb(121, 119, 122);
+}
+.cam-xuc img {
+    width: 22px;
+    height: 22px;
+    cursor: pointer;
+}
+.pad-content-left{
+    border-right:  1px solid grey;
+    overflow-x: auto;
+}
+.content{
+    font-family:'Noto Serif',serif;    
+    font-size: 1.5em;
+    color: #333;
+    line-height: 1.618;
+}
+.content img{
+    width: 100%;
+}
+.title-tt{
+    color: blue;
+    margin-bottom: 10px;
+}
+@media screen and (max-width: 600px) {
+    .content-bai-viet {
+        margin-top: 50px;
+    }
+    .diem-nv{
+        margin-top: 10px;
+    }
+    .pad-content-left{
+        border-right:  none !important;
+        overflow-x: auto;
+    }
+}

@@ -26,6 +26,7 @@ namespace POSTNET.Api.Controllers
         public async Task<ActionResult> Get()
         {
             var data = await _service.getDanhSachBaiViet();
+
             return Ok(data);
         }
 
@@ -36,17 +37,17 @@ namespace POSTNET.Api.Controllers
             return Ok(data);
         }
 
-        //[HttpGet("GetBaiVietHienThi/{danhMucId}/{viTriBaiViet}")]
-        //public async Task<ActionResult> GetBaiVietHienTHi(long danhMucId, int viTriBaiViet)
-        //{
-        //    var data = await _service.GetBaiVietHienThi(danhMucId, viTriBaiViet);
-        //    return Ok(data);
-        //}
+        [HttpGet("GetBaiVietHienThi/{danhMucId}")]
+        public async Task<ActionResult> GetBaiVietHienTHi(long danhMucId)
+        {
+            var data = await _service.GetBaiVietHienThi(danhMucId);
+            return Ok(data);
+        }
 
         [HttpGet("{id}")]
         public async Task<ActionResult> Get(long id)
         {
-                var data = await _service.GetById(id, s => s.Include(a => a.DanhMucBaiViet));
+            var data = await _service.GetById(id, s => s.Include(a => a.DanhMucBaiViet));
             var result = new BaiVietViewModel
             {
                 Id = data.Id,
@@ -61,7 +62,7 @@ namespace POSTNET.Api.Controllers
                 HienThiAnhBia = data.HienThiAnhBia,
                 UrlAnhBia = data.UrlAnhBia,
                 //HienThi = data.HienThiAnhBia.GetValueOrDefault(),
-                ThuTuHienThi = data.ThuTuHienThi,
+                ThuTuHienThiTrangDanhMuc = data.ThuTuHienThiTrangDanhMuc,
                 //LuotXemAo = data.LuotXemAo,
                 //LuotXem = data.LuotXem,
                 NgayTao = data.NgayTao,
@@ -86,7 +87,7 @@ namespace POSTNET.Api.Controllers
                 UrlAnhBia = $@"{RootImage.RootIMG}baiviet\{model.Alias + lastNameIMG}.jpg",
                 HienThiAnhBia = model.HienThiAnhBia,
                 HienThiTrangChu = model.HienThiTrangChu,
-                ThuTuHienThi = model.ThuTuHienThi,
+                ThuTuHienThiTrangDanhMuc = model.ThuTuHienThiTrangDanhMuc,
                 LuotXemAo = 200,
                 LuotXem = 0,
                 NgayTao = dateNow
@@ -123,7 +124,7 @@ namespace POSTNET.Api.Controllers
             data.NoiDung = model.NoiDung;
             //data.HinhAnh = $"wwwroot\\baiviet\\{model.Alias + lastNameIMG}.png";;;
             //data.HoatDong = model.HienThi;
-            data.ThuTuHienThi = model.ThuTuHienThi;
+            data.ThuTuHienThiTrangDanhMuc = model.ThuTuHienThiTrangDanhMuc;
             //data.LuotXem = model.LuotXem;
             data.NgayUpdate = DateTime.Now;
             _service.Update(data);

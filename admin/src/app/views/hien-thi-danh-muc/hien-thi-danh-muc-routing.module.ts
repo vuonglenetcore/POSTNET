@@ -7,7 +7,7 @@ const routes: Routes = [
     path: '',
     component: HienThiDanhMucComponent,
     data: {
-      title: 'hien-thi-danh-muc'
+      title: 'Hiển thị danh mục'
     }  
 
   }

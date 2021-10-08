@@ -12,7 +12,7 @@ namespace POSTNET.Service.Services.BaiViets
         Task<int> countTongSoBaiViet();
         Task<List<BaiVietGrid>> getDanhSachBaiViet();
         Task<List<BaiVietGrid>> getDanhSachBaiVietTheoDanhMucId(long danhMucId);
-        //Task<List<CauHinhHienThiBaiVietVo>> GetBaiVietHienThi(long danhMucId, int viTriBaiViet);
-        Task<List<CauHinhHienThiBaiVietVo>> GetThemBaiVietChoTrang(long danhMucId, int viTriBaiViet);
+        Task<List<CauHinhHienThiBaiVietVo>> GetBaiVietHienThi(long danhMucId);
+        Task<List<CauHinhHienThiBaiVietVo>> GetThemBaiVietChoTrang(long danhMucId);
     }
 }

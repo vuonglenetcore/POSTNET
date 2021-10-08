@@ -1,0 +1,62 @@
+<div class="row">
+    <div class="col-md-12 d-flex justify-content-end">
+        <button [mat-dialog-close] cdkFocusInitial class="iport_primary_btn"mat-raised-button>X</button>
+    </div>
+</div>
+<form class="form-signin" #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+    <div class="container">
+        <h2 class="form-sigin-heading">Đăng nhập để đánh giá bài viết</h2>
+        <div class="row">
+            <div class="col-md-3">
+                <img src="assets/images/logo.jpg" alt="" height="60px">
+            </div>
+            <div class="col-md-9">
+             <i>Đăng nhập báo NHexpress để hưởng đặc quyền của thành viên báo NHexpress</i>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-12">
+                        <b class="color-blue"> Đăng nhập bằng facebook, google</b>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div *ngIf="invalidLogin" class="alert alert-danger">Lỗi usename or password</div>
+                        <br>
+                        <label for="username" class="sr-only">số điện thoại</label>
+                        <input type="text" id="username" name="username" class="form-control" ngModel
+                            placeholder="số điện thoại" required autofocus>
+                        <br>
+                        <label for="password" class="sr-only">mật khẩu</label>
+                        <input type="password" name="password" id="password" ngModel class="form-control"
+                            placeholder="mật khẩu" required>
+                        <hr>
+                        <button class="btn btn-sm btn-lg btn-primary btn-block" type="submit">Đăng nhập</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="row login-mxh">
+                    <div class="col-md-12">
+                        <b class="color-blue"> Đăng nhập bằng facebook, google</b>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label class="form-control login-fb">Facebook</label>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-control login-gg">Google</label>
+                    </div>
+                </div>
+                <div class="row div-register">
+                    <hr>
+                    <button class="btn btn-sm btn-lg btn-primary btn-block btn-register" type="button">Chưa có tài khoản. đăng kí nhanh</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</form>

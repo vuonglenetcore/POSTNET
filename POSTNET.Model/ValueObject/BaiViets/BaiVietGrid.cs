@@ -17,7 +17,7 @@ namespace POSTNET.Model.ValueObject.BaiViets
         public bool? HoatDong { get; set; }
         public bool? HienThiTrangChu { get; set; }
         public bool? HienThiAnhBia { get; set; }
-        public int? ThuTuHienThi { get; set; }
+        public int? ThuTuHienThiTrangDanhMuc { get; set; }
         public string TenDanhMuc { get; set; }
         public DateTime CreatedOn { get; set; }
         public string CreatedOnDisplay { get; set; }
